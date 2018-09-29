@@ -99,7 +99,7 @@ public class JpaController {
         Map<String,Object> result = new HashMap<String,Object>();
         result.put("total", all2.getNumberOfElements());
         result.put("rows",all2.getContent());
-//        System.out.println("113421");
+//        System.out.println("1134sa21");
         return result;
     }
 }
