@@ -23,6 +23,9 @@ import java.util.Map;
  **/
 @RestController
 public class JpaController {
+    public static void main(String[] args) {
+        System.out.println(Timestamp.class.getClassLoader());
+    }
     @Autowired
     JpaRepository jpa;
 
