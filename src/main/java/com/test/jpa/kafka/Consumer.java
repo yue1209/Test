@@ -1,14 +1,17 @@
+/*
 package com.test.jpa.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * @ClassName Consumer
  * @Author yue
  * @Date 2018/8/29 : 14:30
- **/
+ **//*
+
 @Component
 public class Consumer {
 
@@ -19,3 +22,4 @@ public class Consumer {
 
 
 }
+*/

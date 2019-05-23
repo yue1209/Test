@@ -40,7 +40,7 @@
             <scope>runtime</scope>
         </dependency>
         <!--Springboot热部署-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
@@ -48,10 +48,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-ldap</artifactId>
-        </dependency>
+        </dependency>-->
         <!--Springboot热部署-->
-        <!--kafka-->
-        <dependency>
+        <!--kafka begin-->
+        <!--<dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
@@ -60,16 +60,16 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.10</artifactId>
             <version>0.10.2.0</version>
-        </dependency>
-        <!--kafka-->
-        <!--activity   begin-->
-        <!-- https://mvnrepository.com/artifact/org.activiti/activiti-engine -->
+        </dependency>-->
+        <!--kafka end-->
+        <!--activity   begin
+         https://mvnrepository.com/artifact/org.activiti/activiti-engine
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-engine</artifactId>
             <version>5.17.0</version>
         </dependency>
-        <!--activity   end-->
+        activity   end-->
         <!--easyPoi begin-->
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -87,6 +87,29 @@
             <version>3.0.3</version>
         </dependency>
         <!--easyPoi end-->
+        <!--logback begin-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.11</version>
+        </dependency>
+        <!--     logback扩展包，监听,用于解决与spring的结合 -->
+        <dependency>
+            <groupId>org.logback-extensions</groupId>
+            <artifactId>logback-ext-spring</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+        <!--logback end-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

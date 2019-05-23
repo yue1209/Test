@@ -2,11 +2,15 @@ package com.test.jpa.controller;
 
 import com.test.jpa.Pojo.Jpa_User;
 import com.test.jpa.dao.JpaRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,14 +27,14 @@ import java.util.Map;
  **/
 @RestController
 public class JpaController {
-    public static void main(String[] args) {
-        System.out.println(Timestamp.class.getClassLoader());
-    }
+    //定义一个全局的记录器，通过LoggerFactory获取
+    private final static Logger logger = LoggerFactory.getLogger(JpaController.class);
     @Autowired
     JpaRepository jpa;
 
     @RequestMapping("/")/**/
     public String getString() {
+        logger.info("启动成功");
         return "1";
     }
 
@@ -41,14 +45,31 @@ public class JpaController {
      * @return
      */
     @RequestMapping("/add")
+    @Transactional
     public String addJpaUser() {
         Jpa_User u = new Jpa_User();
-        u.setName("2");
-        u.setPass("3");
-        jpa.save(u);
+        try {
+            u.setName("2");
+            u.setPass("3");
+            jpa.save(u);
+            logger.info("添加成功" + u.toString());
+            if (u.getId() == 65) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            logger.error("添加失败-[" + u.toString()+"]-"+u.getId()+"]超出最大限制");
+            return "Save Success";
+        }
         return "Save Success";
     }
 
+    /**
+     * @Param
+     * @Return
+     * @Author yue
+     * @Date 2019/5/23
+     * @Time 16:20
+     */
     @RequestMapping("/upd")
     public String updJpaUser(int id) {
         Jpa_User u = new Jpa_User();
@@ -74,6 +95,7 @@ public class JpaController {
 
     /**
      * 查询
+     *
      * @return
      */
     @RequestMapping("/all")
@@ -82,7 +104,7 @@ public class JpaController {
         //查询全部
         List<Jpa_User> all = jpa.findAll();
         //默认排序
-        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
         List<Jpa_User> all1 = jpa.findAll(sort);
         //模糊查询:https://blog.csdn.net/czx1204/article/details/79131281
         //多表查询：https://www.cnblogs.com/jiangxiaoyaoblog/p/5635152.html
@@ -92,22 +114,23 @@ public class JpaController {
 
     /**
      * 分页查询：https://blog.csdn.net/a772304419/article/details/79051307
+     *
      * @return
      */
     @RequestMapping("/allByPage")
-    public Map<String,Object> queryAllByPage() {
+    public Map<String, Object> queryAllByPage() {
         //分页查询（传入page以及rows）
-        Pageable pageable = new PageRequest(2-1,2);
-        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable = new PageRequest(2 - 1, 2);
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
         Page<Jpa_User> all2 = jpa.findAll(pageable);
         //返回客户端数据需要total和rows
-        Map<String,Object> result = new HashMap<String,Object>();
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("total", all2.getNumberOfElements());
-        result.put("rows",all2.getContent());
+        result.put("rows", all2.getContent());
 //        System.out.println("1a13sssss421");
 
         Timestamp timestamp = Timestamp.valueOf(LocalDateTime.MAX);
-        System.out.println("1111+test111222"+timestamp);
+        System.out.println("1111+test111222" + timestamp);
         return result;
     }
 }
