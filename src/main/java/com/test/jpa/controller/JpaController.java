@@ -49,10 +49,13 @@ public class JpaController {
     @Transactional
     public String addJpaUser() {
         Date date = new Date();
+        Date date1 = new Date();
+        Date date2 = new Date();
+        Date date21 = new Date();
         Jpa_User u = new Jpa_User();
         try {
             u.setName("2");
-            u.setPass("3");
+            u.setPass("3dsa");
             jpa.save(u);
             logger.info("添加成功" + u.toString());
             if (u.getId() == 65) {
