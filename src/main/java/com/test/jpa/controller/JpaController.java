@@ -55,7 +55,7 @@ public class JpaController {
         Jpa_User u = new Jpa_User();
         try {
             u.setName("2");
-            u.setPass("3");
+            u.setPass("3dsa");
             jpa.save(u);
             logger.info("添加成功" + u.toString());
             if (u.getId() == 65) {
