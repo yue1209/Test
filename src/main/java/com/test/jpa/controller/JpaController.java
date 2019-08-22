@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class JpaController {
     @RequestMapping("/add")
     @Transactional
     public String addJpaUser() {
+        Date date = new Date();
         Jpa_User u = new Jpa_User();
         try {
             u.setName("2");
