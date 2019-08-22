@@ -49,6 +49,8 @@ public class JpaController {
     @Transactional
     public String addJpaUser() {
         Date date = new Date();
+        Date date1 = new Date();
+        Date date2 = new Date();
         Jpa_User u = new Jpa_User();
         try {
             u.setName("2");
