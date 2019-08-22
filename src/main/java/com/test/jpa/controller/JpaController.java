@@ -51,6 +51,7 @@ public class JpaController {
         Date date = new Date();
         Date date1 = new Date();
         Date date2 = new Date();
+        Date date3 = new Date();
         Jpa_User u = new Jpa_User();
         try {
             u.setName("2");
